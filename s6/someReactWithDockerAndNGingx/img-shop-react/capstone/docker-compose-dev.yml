@@ -1,0 +1,13 @@
+version: "3.8"
+services: 
+    web_app:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        restart: on-failure
+        stdin_open: true # e nevoie pt react
+        ports: 
+            - "3000:3000"
+        volumes: 
+            - /app_react/node_modules
+            - .:/app_react

@@ -1,0 +1,19 @@
+version: "3.8"
+services: 
+    redisserver:
+        image: 'redis'
+        restart: on-failure
+    mongodbserver:
+        image: 'mongo'
+        restart: on-failure
+        ports:
+            - "27017:27017"
+        volumes:
+            - persistentData:/data/db # It's useful for data persistent, so the data will not be deleted even later you call command docker-compose down.
+    appnodee:
+        build: .
+        restart: 'on-failure'
+        ports: 
+            - "8000:3030"
+volumes:
+    persistentData:
